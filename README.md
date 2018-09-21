@@ -1,4 +1,4 @@
-# RoundRestore
+## RoundRestore
 Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 
 ### How to use:
