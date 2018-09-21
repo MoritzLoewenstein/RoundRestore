@@ -8,7 +8,7 @@ How to use:
 4. Use any of the chatcommands down below
 
 Chat Commands
--To use any of these commands you need to be sourcemod admin
+- To use any of these commands you need to be sourcemod admin
 - !restore          Main Menu
 - !restorelast      Displays vote for restoring last round
 
