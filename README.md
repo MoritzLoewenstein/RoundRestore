@@ -9,8 +9,8 @@ How to use:
 
 Chat Commands
 To use any of these commands you need to be sourcemod admin
-!restore          Main Menu
-!restorelast      Displays vote for restoring last round
+1. !restore          Main Menu
+2. !restorelast      Displays vote for restoring last round
 
 Main Menu
 First Menu Item restores last round.
