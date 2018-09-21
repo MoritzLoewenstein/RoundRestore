@@ -3,7 +3,7 @@ Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 
 How to use:
 1. Download RestoreRound.smx
-2. Move it to your csgo/sourcemod/plugins directory
+2. Move it to your csgo/addons/sourcemod/plugins directory
 3. Make sure plugin is running ("sm plugins list")
 4. Use any of the chatcommands down below
 
