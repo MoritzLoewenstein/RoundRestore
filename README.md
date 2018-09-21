@@ -3,7 +3,7 @@ Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 
 ### About this Plugin
 - This is my first Sourcemod Plugin, so this is probably not perfectly programmed, I initially
- only created this Plugin because there was no Plugin to restore Rounds before.
+ only created this Plugin to use it on my own Server because there was no Plugin to restore Rounds before.
 - This Plugin only uses already existing CS:GO Server Commands to restore Rounds.
 - If you want to change something in this Plugin, you are free to copy the code and compile it at [sourcemod.net](http://www.sourcemod.net/compiler.php)
 - Of course you can always report bugs or propose changes here on github :)
