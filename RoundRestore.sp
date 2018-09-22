@@ -31,6 +31,9 @@ public void OnPluginStart()
 	{
 		HookConVarChange(hRestartGame, GameRestartChanged);
 	}		
+	ServerCommand("mp_backup_restore_load_autopause 0");
+	ServerCommand("mp_backup_round_auto 1");
+	ServerCommand("mp_backup_round_file_pattern %prefix%_round%round%.txt");
 	PrintToChatAll("%s Round Restore loaded!", ChatPrefix1);	
 }
 
@@ -245,8 +248,7 @@ public Action restoreRound(int round)
 	else
 		Format(roundName, sizeof(roundName), "%s%d%s", prefix2, round, end);	
 	PrintToChatAll("%s Restoring Round %d", ChatPrefix1, round);
-	ServerCommand("mp_backup_restore_load_file %s", roundName);
-	ServerCommand("mp_unpause_match");	
+	ServerCommand("mp_backup_restore_load_file %s", roundName);	
 	PrintToChatAll("%s Restored Round, have fun!", ChatPrefix1);	
 	return Plugin_Handled;
 }
