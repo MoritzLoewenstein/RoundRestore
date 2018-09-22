@@ -14,7 +14,7 @@ public Plugin myinfo =
 	author = "MoeJoe111",
 	description = "Restore round backups with sourcemod",
 	version = "0.6",
-	url = ""
+	url = "https://github.com/MoeJoe111/RoundRestore"
 };
 
 public void OnPluginStart()
