@@ -1,19 +1,20 @@
 #include <sourcemod>
 
-new prevRound = 0;
-new restRound = 0;
-new bool:restored = false;
-new String:ChatPrefix1[16] = "\x01[Server]\x04";
-new String:ChatPrefix2[16] = "\x01[Server]\x02";
-new Handle:hRestartGame = INVALID_HANDLE;
+int prevRound = 0;
+int restRound = 0;
+bool restored = false;
+Handle hRestartGame = INVALID_HANDLE;
+char ChatPrefix1[] = "\x01[Server]\x04";
+char ChatPrefix2[] = "\x01[Server]\x02";
+
 
 public Plugin myinfo =
 {
 	name = "Round Restore",
 	author = "MoeJoe111",
 	description = "Restore round backups with sourcemod",
-	version = "0.5",
-	url = "https://github.com/MoeJoe111/RoundRestore"
+	version = "1.0",
+	url = ""
 };
 
 public void OnPluginStart()
@@ -30,10 +31,6 @@ public void OnPluginStart()
 	{
 		HookConVarChange(hRestartGame, GameRestartChanged);
 	}		
-	ServerCommand("mp_backup_restore_load_autopause 0");
-	ServerCommand("mp_backup_round_auto 1");
-	ServerCommand("mp_backup_round_file_pattern %prefix%_round%round%.txt");
-	//AutoExecConfig(true, "RoundRestore", "sourcemod/RoundRestore");	currently useless, will be used when I created some ConVars
 	PrintToChatAll("%s Round Restore loaded!", ChatPrefix1);	
 }
 
@@ -49,7 +46,7 @@ public void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 	prevRound += 1;
 }
 
-public GameRestartChanged(Handle:convar, const String:oldValue[], const String:newValue[])
+public void GameRestartChanged(Handle convar, const char[] oldValue, const char[] newValue)
 {
 	if(!StrEqual(newValue, "0"))
 	{	
@@ -94,11 +91,11 @@ public Action MainMenu(int client, int args)
 	Menu menu = new Menu(MenuHandler);
 	menu.SetTitle("Round Restore");
 	menu.ExitButton = true;
-	AddMenuItem(menu, "restoreLast", "Restore last Round");
-	AddMenuItem(menu, "restorePast", "Restore past Rounds");
+	menu.AddItem("restoreLast", "Restore last Round");
+	menu.AddItem("restorePast", "Restore past Rounds");
 	if(restored)
 	{
-		AddMenuItem(menu,"restoreFut", "Restore future Rounds"); 
+		menu.AddItem("restoreFut", "Restore future Rounds"); 
 	}
 	menu.Display(client, 20);
 	return Plugin_Handled;
@@ -185,9 +182,11 @@ public Action VotePast(int client, int args)
 	} 
 	Menu menu = new Menu(Handle_VoteMultipleRounds);
 	menu.SetTitle("Which round to restore?");
-	new roundNumber;
-	decl String:roundString[8];
-	decl String:roundString2[16];
+	menu.ExitBackButton = true;
+	menu.ExitButton = true;	
+	int roundNumber;
+	char roundString[8];
+	char roundString2[16];
 	if(prevRound > 5)
 	{
 		for(int i = 0; i < 5; i++)
@@ -208,9 +207,7 @@ public Action VotePast(int client, int args)
 			menu.AddItem(roundString, roundString2);
 			roundNumber += 1;
 		}		
-	}	
-	menu.ExitBackButton = true;
-	menu.ExitButton = true;
+	}
 	menu.Display(client, 20);	
 }
 
@@ -222,16 +219,16 @@ public Action VoteFut(int client, int args)
 	} 
 	Menu menu = new Menu(Handle_VoteMultipleRounds);
 	menu.SetTitle("Which round to restore?");
-	decl String:roundString[8];
-	decl String:roundString2[16];
-	for(int i = prevRound; i <= prevRound + 5; i++)
+	menu.ExitBackButton = true;
+	menu.ExitButton = true;
+	char roundString[8];
+	char roundString2[16];
+	for(int i = prevRound; i <= prevRound + 4; i++)
 	{	
 		Format(roundString, sizeof(roundString), "%d", i);
 		Format(roundString2, sizeof(roundString2), "Round %s", roundString);
 		menu.AddItem(roundString, roundString2);
 	}	
-	menu.ExitBackButton = true;
-	menu.ExitButton = true;
 	menu.Display(client, 20);	
 }
 
@@ -239,16 +236,17 @@ public Action restoreRound(int round)
 {	
 	restored = true;
 	prevRound = round;
-	new String:roundName[64];
-	new String:prefix1[16] = "backup_round0";
-	new String:prefix2[16] = "backup_round";
-	new String:end[8] = ".txt";
+	char roundName[64];
+	char prefix1[16] = "backup_round0";
+	char prefix2[16] = "backup_round";
+	char end[8] = ".txt";
 	if(round<10)	
 		Format(roundName, sizeof(roundName), "%s%d%s", prefix1, round, end);		
 	else
 		Format(roundName, sizeof(roundName), "%s%d%s", prefix2, round, end);	
 	PrintToChatAll("%s Restoring Round %d", ChatPrefix1, round);
-	ServerCommand("mp_backup_restore_load_file %s", roundName);	
+	ServerCommand("mp_backup_restore_load_file %s", roundName);
+	ServerCommand("mp_unpause_match");	
 	PrintToChatAll("%s Restored Round, have fun!", ChatPrefix1);	
 	return Plugin_Handled;
 }
