@@ -4,8 +4,8 @@ int prevRound = 0;
 int restRound = 0;
 bool restored = false;
 Handle hRestartGame = INVALID_HANDLE;
-char ChatPrefix1[] = "\x01[Server]\x04";
-char ChatPrefix2[] = "\x01[Server]\x02";
+char ChatPrefix1[18] = "\x01[Server]\x04";
+char ChatPrefix2[18] = "\x01[Server]\x02";
 
 
 public Plugin myinfo =
@@ -13,7 +13,7 @@ public Plugin myinfo =
 	name = "Round Restore",
 	author = "MoeJoe111",
 	description = "Restore round backups with sourcemod",
-	version = "1.0",
+	version = "0.6",
 	url = ""
 };
 
