@@ -26,4 +26,4 @@ Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 - If you restored a round, there will be an additional Menu Item in the Main Menu
 which will display the next 5 rounds.
 
-#### Thanks for using this Plugin ~MoeJoe111
+#### Thanks for using this Plugin ~
