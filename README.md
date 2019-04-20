@@ -14,7 +14,7 @@ Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 3. Move it to your csgo/addons/sourcemod/plugins directory
 4. Make sure the plugin is running ("sm plugins list")
 5. Make sure you set 
-  ``'mp_backup_round_file_pattern \%prefix\%_round\%round\%.txt``
+  `mp_backup_round_file_pattern \%prefix\%_round\%round\%.txt`
 6. Use any of the Chat Commands down below
 
 ### Chat Commands
