@@ -31,6 +31,7 @@ public void OnPluginStart() {
 	}
 	ServerCommand("mp_backup_restore_load_autopause 0");
 	ServerCommand("mp_backup_round_auto 1");
+	//Escape doesnt work with \
 	//ServerCommand("mp_backup_round_file_pattern \%prefix\%_round\%round\%.txt");
 	PrintToChatAll("%s Round Restore loaded!", ChatPrefix1);
 }
