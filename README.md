@@ -13,7 +13,8 @@ Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 2. Download RestoreRound.smx from [releases](https://github.com/MoritzLoewenstein/RoundRestore/releases)
 3. Move it to your csgo/addons/sourcemod/plugins directory
 4. Make sure the plugin is running ("sm plugins list")
-5. Use any of the Chat Commands down below
+5. Make sure you set '''mp_backup_round_file_pattern \%prefix\%_round\%round\%.txt'''
+6. Use any of the Chat Commands down below
 
 ### Chat Commands
  To use any of these commands you need to be sourcemod admin
@@ -22,8 +23,6 @@ Useful Plugin for restoring Rounds in a competitive CS:GO Match.
 
 ### Main Menu
 - First Menu Item restores last round.
-- Second Menu Item always displays the last 5 rounds.
-- If you restored a round, there will be an additional Menu Item in the Main Menu
-which will display the next 5 rounds.
+- Second Menu Item displays all rounds with the current round at the top (you can navigate back and forth)
 
 #### Thanks for using this Plugin ~
