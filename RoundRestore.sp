@@ -11,10 +11,10 @@ char ChatPrefix2[18] = "\x01[Server]\x02";
 public Plugin myinfo =
 {
 	name = "Round Restore",
-	author = "MoeJoe111",
+	author = "Moritz Loewenstein",
 	description = "Restore round backups with sourcemod",
-	version = "0.6",
-	url = "https://github.com/MoeJoe111/RoundRestore"
+	version = "0.9",
+	url = "https://github.com/MoritzLoewenstein/RoundRestore"
 };
 
 public void OnPluginStart() {
